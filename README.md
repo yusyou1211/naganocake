@@ -14,7 +14,7 @@ DMMWEBCAMPのチーム開発で作成したECサイトとなります。
 
 [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/14O65CT9Sn7ogGSK-HlNqdlj0NbyILfxa8sOldZaXLjo/edit#gid=549108681)
 
-![どるふぃんず　ER図](https://user-images.githubusercontent.com/106585979/191876287-155c5593-7e2a-47d5-b35d-6a232cb65576.png)
+![ER図](https://user-images.githubusercontent.com/106585979/191876287-155c5593-7e2a-47d5-b35d-6a232cb65576.png)
 
 
 # 言語やフレームワークのバージョン
@@ -59,10 +59,3 @@ DMMWEBCAMPのチーム開発で作成したECサイトとなります。
 * 会員の一覧、詳細、会員情報の編集機能、会員の注文履歴一覧
 * 注文履歴の一覧、詳細、注文状況の編集機能（注文ステータス, 製作ステータスの切り替えが可能）
 * 商品のジャンル設定
-
-# チームメンバー
-
-* ともちん
-* あや
-* しおりん
-* こみたか

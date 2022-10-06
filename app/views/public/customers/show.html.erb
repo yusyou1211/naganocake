@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row" style="margin-left: 110px;">
+      <h4>マイページ</h4>
+  </div>
+  <div class="row mt-30 mb-30">
+    <div class="col-2 mt-3">
+    <h6 style="padding-top:9px; font-size: 20px;"><strong>登録情報</strong></h6>
+    </div>
+    <div class="col-2 mt-3 mb-3">
+    <%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-block btn01" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <table class = "table table-bordered">
+        <tr>
+          <td class="table-area col-2">氏名</td>
+          <td class="col-5"><%= @customer.full_name_space %></td>
+        </tr>
+        <tr>
+          <td class="table-area">カナ</td>
+          <td><%= @customer.last_name_kana + " " + @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="table-area">郵便番号</td>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td class="table-area">住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td class="table-area">電話番号</td>
+          <td><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <td class="table-area">メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 mt-3">
+      <h6 style="padding-top:9px; font-size: 20px;"><strong>配送先</strong></h6>
+    </div>
+    <div class="col-3 mt-3">
+        <%= link_to '一覧を見る', addresses_path, class: "btn btn02" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2 mt-3 mb-5">
+      <h6 style="padding-top:9px; font-size: 20px;"><strong>注文履歴</strong></h>
+    </div>
+    <div class="col-3 mt-3 mb-5">
+      <%= link_to '一覧を見る', orders_path, class: "btn btn02" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <h4 style="margin-left:150px">注文情報確認</h4>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <table class="table table-bordered">
+        <thead class="table-area">
+          <tr>
+            <td class="col-4">商品名</td>
+            <td class="col-2">単価（税込）</td>
+            <td class="col-2">数量</td>
+            <td class="col-2">小計</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= image_tag cart_item.item.get_item_image(50, 50) %><%= cart_item.item.name %></td>
+              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+            </tr>
+           <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-3">
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-area col-6">送料</td>
+          <td><%= @shipping_cost.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-area col-6">商品合計</td>
+          <td><%= session[:sum_price].to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-area">請求金額</td>
+          <td><%= (session[:sum_price] + @shipping_cost).to_s(:delimited) %> </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <p class="font-weight-bold", style="font-size:20px">支払方法</p>
+    </div>
+    <div class="col-2">
+      <%= Order.payment_methods_i18n[@order.payment_method] %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <p class="font-weight-bold", style="font-size:20px">お届け先</p>
+    </div>
+    <div class="col-10">
+      <%= session[:postal_code] + session[:address] %><br>
+      <%= session[:name] %>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <duv class="col-2 text-center">
+      <%= form_with model:@order, url: orders_path, method: :post do |f| %>
+        <%= f.submit "注文を確定する", class: "btn btn01" %>
+      <% end %>
+    </duv>
+  </div>
+</div><br><br>

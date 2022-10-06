@@ -1,0 +1,35 @@
+<%= form_with model:address do |f| %>
+<form class="form-horizontal">
+  <div class="row form-group mt-3 mb-3" style="margin-left: 85px;">
+    <div class="col-3">
+      <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: "form-label" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :postal_code, placeholder:'0000000', class: "form-control" %>
+    </div>
+  </div>
+  <div class="row form-group mt-3 mb-3" style="margin-left: 85px;">
+    <div class="col-3">
+      <%= f.label :address, '住所', class: "form-label" %>
+    </div>
+    <div class="col-6">
+      <%= f.text_field :address, placeholder:'東京都渋谷区代々木神園町0-0', class: "form-control" %>
+    </div>
+  </div>
+  <div class="row form-group mt-3 mb-3" style="margin-left: 85px;">
+    <div class="col-3">
+      <%= f.label :name, '宛名', class: "form-label" %>
+    </div>
+    <div class="col-3">
+      <%= f.text_field :name, placeholder:'令和道子', class: "form-control" %>
+    </div>
+    <div style="margin-left: 220px;">
+      <% if controller.action_name == 'index' %>
+        <%= f.submit '新規登録', class: 'btn btn01' %>
+      <% else %>
+        <%= f.submit '変更内容を保存', class: 'btn btn01' %>
+      <% end %>
+    </div>
+  </div>
+</form>
+<% end %>

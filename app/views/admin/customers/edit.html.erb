@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h4><%= @customer.full_name %>さんの会員情報編集</h4>
+      <%= form_with(model: @customer, url: admin_customer_path, local: true ,method: :patch) do |f| %>
+      <table class="table table-borderless table-sm">
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td scope="col", style="width: 30%"><%= f.text_field :last_name, autofocus: true %></td>
+          <td><%= f.text_field :first_name, autofocus: true %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= f.text_field :last_name_kana, autofocus: true %></td>
+          <td><%= f.text_field :first_name_kana, autofocus: true %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.text_field :postal_code, autofocus: true %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td colspan="2"><%= f.text_field :address, autofocus: true, size: 50 %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td ><%= f.text_field :phone_number, autofocus: true %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td class="form-inline", style="font-size : 20px;">
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :is_deleted, 'false' %><%= f.label :is_deleted, '有効' %>
+            </div>
+            <div class="form-check form-check-inline">
+              　<%= f.radio_button :is_deleted, 'true' %><%= f.label :is_deleted, '退会' %>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </table><br>
+      <div style="margin-left: 160px">
+          <%= f.submit '変更を保存', class:"btn btn-lg btn01" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

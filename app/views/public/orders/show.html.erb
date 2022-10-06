@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <h4 class="px-4 font-weight-bold bg-gray-100" style="margin-left:160px;" >注文履歴詳細</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-7">
+      <h6 class="pb-2 font-weight-bold">注文情報</h6>
+      <table class="table table-bordered">
+        <tr>
+          <td class="col-3 table-area">注文日</td>
+          <td class="col-9"><%= @order.created_at.strftime('%Y/%-m/%-d') %></td>
+        </tr>
+        <tr>
+          <td class="table-area">配送先</td>
+          <td>
+            <%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-area">支払方法</td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td class="table-area">ステータス</td>
+          <td><%= @order.status_i18n %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-4">
+      <h6 class="pb-2 font-weight-bold">請求情報</h6>
+      <table class="table table-bordered">
+        <tr>
+          <td class="col-7 table-area">商品合計</td>
+          <td><%= @sum.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="col-5 table-area">配送料</td>
+          <td><%= @order.shipping_cost.to_s(:delimited)  %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold table-area">ご請求額</td>
+          <td><%= @order.total_payment.to_s(:delimited)  %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9">
+      <h6 class="pb-2 font-weight-bold">注文内容</h6>
+      <table class="table table-bordered">
+        <thead class="table-area">
+          <tr">
+            <td class="col-6">商品</td>
+            <td class="col-2">単価（税込）</td>
+            <td class="col-1">個数</td>
+            <td class="col-1">小計</td>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order.order_details.each do |detail| %>
+          <tr>
+            <td><%= detail.item.name %></td>
+            <td><%= detail.price.to_s(:delimited) %></td>
+            <td><%= detail.amount %></td>
+            <td><%= (detail.price*detail.amount).to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

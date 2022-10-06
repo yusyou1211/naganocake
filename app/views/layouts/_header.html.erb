@@ -1,0 +1,69 @@
+<header>
+  <nav class="navbar navbar-expand-sm">
+      <a class="navbar-brand" href="/"><%= image_tag'item.png',size:"200X100" %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+            <% if customer_signed_in? %>
+              <font color="white">ようこそ<%= current_customer.last_name %>さん</font>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                <ul class="navbar-nav ml-auto h4">
+                  <li class="nav-item">
+                    <%= link_to "マイページ" ,customer_path(current_customer.id), class: 'nav-link text-light'%>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "商品一覧",items_path, class: 'nav-link text-light'  %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "カート",cart_items_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to  "ログアウト",destroy_customer_session_path, method: :delete, class: 'nav-link text-light' %>
+                  </li>
+                </ul>
+              </div>
+            <% elsif admin_signed_in? %>
+              <ul class="navbar-nav ml-auto h4">
+                <li class="nav-item">
+                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light'  %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav ml-auto h4">
+                <li class="nav-item">
+                  <%= link_to "About",about_path, class: 'nav-link text-light'  %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "商品一覧",items_path, class: 'nav-link text-light'  %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録",new_customer_registration_path, class: 'nav-link text-light'%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン",new_customer_session_path, class: 'nav-link text-light' %>
+                </li>
+              </ul>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    <div class="row">
+      <div class="ml-auto mr-5 mb-1">
+        <%= render 'layouts/search' %>
+      </div>
+    </div>
+</header>
